@@ -1,13 +1,17 @@
 import React from 'react'
 import {assets} from '../assets/frontend-assets/assets'
+import { useNavigate } from 'react-router-dom'
 
 const Sidebar = () => {
+ 
+  const navigate = useNavigate();
+
   return (
     <div className='w-[20%] h-full p-2 flex-col gap-2 lg:flex'>
     <div className='bg-[#121212] h-[15%] rounded flex flex-col justify-around' >
-       <div className='flex items-center gap-3 p1-8 cursor-pointer'>
+       <div onClick={()=>navigate('/')} className='flex items-center gap-3 p1-8 cursor-pointer'>
        <img className='w-6' src={assets.home_icon}/>
-       <p className='font-semibold'> Home</p>
+       <p  className='font-semibold'> Home</p>
        </div>
        <div className='flex items-center gap-3 p1-8 cursor-pointer'>
        <img className='w-6' src={assets.search_icon}/>

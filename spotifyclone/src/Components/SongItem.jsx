@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { PlayerContext } from '../Context/PlayerContext'
 
 const SongItem = ({image, name, id, desc}) => {
+
+  const {playwithID} = useContext(PlayerContext)
   return (
-    <div className='min-w-[180px] p-2 px-3 rounded cursor-pointer hover:bg-[#ffffff26]' >
+    <div onClick={()=>playwithID(id)} className='min-w-[180px] p-2 px-3 rounded cursor-pointer hover:bg-[#ffffff26]' >
 
     <img className='rounded' src={image} alt="" />
     <p className='font-bold mt-2 mb-1'>{name} </p>
