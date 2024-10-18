@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const connectDB = async () => {
 
-    mongoose.connect.on("connected", ()=>{
+    mongoose.connection.on("connected", ()=>{
         console.log("DB Connected");
     })
 
@@ -12,4 +12,4 @@ const connectDB = async () => {
       
 }
 
-module.exports = mongoose.connectDB;
+module.exports = connectDB;

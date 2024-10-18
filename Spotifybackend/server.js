@@ -4,6 +4,7 @@ require("dotenv").config();
 const cors = require('cors');
 const songRouter = require('./src/routes/songRoute')
 const connectDB = require('./src/config/mongodb');
+const connectCloudinary = require('./src/config/cloudinary');
 
 //middlewares
 app.use(cors());
