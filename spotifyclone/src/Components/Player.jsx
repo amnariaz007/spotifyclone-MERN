@@ -6,7 +6,7 @@ const Player = () => {
 
 
   const { seekbg, seekbar, playstatus, play, pause, track, time, next, previous,seeksong } = useContext(PlayerContext);
-  return (
+  return track ?  (
     <div className='h-[10%] bg-black justify-between flex items-center text-white px-4'>
       <div className='hidden lg:flex items-center gap-4'>
         <img className='w-12' src={track.image} alt="" />
@@ -53,7 +53,7 @@ const Player = () => {
 
     </div>
 
-  )
+  ) : null
 }
 
 export default Player

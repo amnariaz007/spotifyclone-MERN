@@ -3,6 +3,7 @@ import { assets } from '../assets/assets'
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { url } from '../App';
+import { useEffect } from 'react';
 
 
 const AddSong = () => {
@@ -34,8 +35,6 @@ const AddSong = () => {
                 'Content-Type': 'multipart/form-data'
               }
             });
-
-          
             if(response.data.success){
                 toast.success("audio added");
 
@@ -54,6 +53,25 @@ const AddSong = () => {
         }
         setloading(false);
     }
+
+    const FetchAlbum = async () => {
+        try {
+            const response = await axios.get(`${url}/api/album/listAlbum`);
+            console.log(response.data);
+            if(response.data.success){
+                setalbumdata(response.data.album);
+            }
+        }
+        catch (err) {
+            console.error("Error adding audio:", err);
+            toast.error("not added")
+        }
+    }
+
+    useEffect(() => {
+        FetchAlbum();
+    }, [])
+    
 
 
   return loading ? (
@@ -96,6 +114,9 @@ const AddSong = () => {
             <p> album </p>
             <select onChange={(e)=>setalbum(e.target.value)} value={album} name="album" className='bg-transparent outline-green-600 border-2 border-gray-400 p-2.5 w-[150px]'>
                 <option value="none"> None </option>
+                {albumdata.map((item,index)=>(
+                    <option key={index} value={item.name}>{item.name} </option>
+))}
             </select>
         </div>
 

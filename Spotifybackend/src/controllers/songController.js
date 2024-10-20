@@ -8,7 +8,11 @@ const AddSong = async (req, res) => {
         const image = req.files.image[0];
         const audioUpload = await cloudinary.uploader.upload(audio.path, { resource_type: "video" });
         const imageUpload = await cloudinary.uploader.upload(image.path, { resource_type: "image" });
-        const duration = `${Math.floor(audioUpload.duration) / 60}: ${Math.floor(audioUpload.duration % 60)} `
+        const totalSeconds = Math.floor(audioUpload.duration); // Round duration to the nearest second
+        const minutes = Math.floor(totalSeconds / 60);
+        const seconds = totalSeconds % 60;
+        const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds; // Ensure seconds are always 2 digits
+        const duration = `${minutes}:${formattedSeconds}`;
 
         const songdata = await songModel.create({
             name,
